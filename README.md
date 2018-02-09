@@ -15,9 +15,9 @@
 * vue-ssr
 
 # 第二章-资源合并和压缩html/css/js 
-## **原理：** 撤销空格、回车、无用代码、注释代码，css语义合并，js变量名缩写（安全性）
-## **方案：** 压缩、合并资源，减少请求接口；合并公共库，不同页面合并（异步加载）      
-## **实践：** webpack gulp fis3 在线网站 
+- **原理：** 撤销空格、回车、无用代码、注释代码，css语义合并，js变量名缩写（安全性）
+- **方案：** 压缩、合并资源，减少请求接口；合并公共库，不同页面合并（异步加载）      
+- **实践：** webpack gulp fis3 在线网站 
 
 # 第三章-图片优化 
 ## **场景：** 
@@ -29,11 +29,11 @@
 * 雪碧图--图标合并，代码不便于更新  
 * ImageInline--将突破内签到html中，减少http请求，较小的图片  
 * 矢量图--SVG绘图，iconfont解决icon问题 
-## **在线网站：**https://tinypng.com (压缩png),zhitu.isux.us (png转成webp),spritecow.com (生产雪碧图)   
-## **http://iconfont.cn**  加入购物车，下载，可以生产代码html/css/js在项目中统一引入使用(unicode兼容性最好，svg浏览器渲染比较差，fontclass ie8+)  
+ **在线网站：**https://tinypng.com (压缩png),zhitu.isux.us (png转成webp),spritecow.com (生产雪碧图)   
+ **http://iconfont.cn**  加入购物车，下载，可以生产代码html/css/js在项目中统一引入使用(unicode兼容性最好，svg浏览器渲染比较差，fontclass ie8+)  
 
 # 第四章-css 和 js 的装载与执行 
-## **HTML渲染过程的特性：** 顺序执行，并发加载；是否阻塞；依赖关系；引入方式  
+ **HTML渲染过程的特性：** 顺序执行，并发加载；是否阻塞；依赖关系；引入方式  
 * **顺序执行，并发加载：** head(css) body(div script) 
 * **是否阻塞：** 
 - css阻塞，css通过link放在head阻塞页面的渲染（防止闪动）；css阻塞js的执行（js可能会改变dom），css不阻塞外部脚本的执行  
