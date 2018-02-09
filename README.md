@@ -33,7 +33,7 @@
 * http://iconfont.cn**  加入购物车，下载，可以生产代码html/css/js在项目中统一引入使用(unicode兼容性最好，svg浏览器渲染比较差，fontclass ie8+)  
 
 # 第四章-css 和 js 的装载与执行 
-**HTML渲染过程的特性：** 顺序执行，并发加载；是否阻塞；依赖关系；引入方式  
+**HTML渲染过程的特性：** 顺序执行，并发加载；是否阻塞；依赖关系；引入方式 
 * **顺序执行，并发加载：** head(css) body(div script) 
 * **是否阻塞：** 
 - css阻塞，css通过link放在head阻塞页面的渲染（防止闪动）；css阻塞内部js的执行（js可能会改变dom），css不阻塞外部脚本的执行  
