@@ -1,0 +1,11 @@
+.image-item {
+  width: 40%;
+  margin-right: 5%;
+  display: inline-block;
+  height: 400px;
+  background: grey;
+}
+
+.image-list {
+  margin-left: 5%;
+}

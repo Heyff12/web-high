@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+  <link rel="mask-icon" type="" href="https://production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" />
+  <title>Colorful Moving Boxes</title>
+  
+  
+  
+  
+      <style>
+      @keyframes box {
+    0% {
+        transform: translate3d(0, 0, 0);
+        background-color: green;
+    }
+
+    100% {
+        transform: translate3d(300px, 0, 0);
+        background-color: blue;
+    }
+}
+
+
+@-webkit-keyframes box {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        background-color: green;
+    }
+
+    100% {
+        -webkit-transform: translate3d(300px, 0, 0);
+        background-color: blue;
+    }
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    border: 2px solid red;
+    transform: translate3d(0, 0, 0);
+    animation-name: box;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-animation-name: box;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    position: absolute;
+}
+
+    </style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+</head>
+
+<body translate="no" >
+
+  Total: <span id="counter">1</span> <input type="button" onclick="addOne()" value="Add 1 box">  <input type="button" onclick="addTen()" value="Add 10 boxes">  <input type="button" onclick="addHundred()" value="Add 100 boxes">
+    <script src="//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js"></script>
+
+  
+    <script>
+    window.counter = 0;
+
+window.addOne = function() {
+    var el = document.createElement('div');
+    el.classList.add('box');
+    el.style.top = (30 + Math.random() * 200) + 'px';
+    el.style.left = (30 + Math.random() * 200) + 'px';
+    //el.style.borderColor = ['red', 'blue', 'green'][Math.floor(Math.random() * 3)];
+    document.body.appendChild(el);
+    ++counter;
+    document.getElementById('counter').innerText = counter;
+}
+
+window.addTen = function() {
+  for (var i = 0; i < 10; ++i) {if (window.CP.shouldStopExecution(1)){break;}window.addOne();
+window.CP.exitedLoop(1);
+}
+}
+    
+window.addHundred = function() {
+  for (var i = 0; i < 10; ++i) {if (window.CP.shouldStopExecution(2)){break;}window.addTen();
+window.CP.exitedLoop(2);
+}
+}
+    
+  
+setTimeout(addOne, 1000);
+  //# sourceURL=pen.js
+  </script>
+
+  
+  
+
+</body>
+</html>
+ 

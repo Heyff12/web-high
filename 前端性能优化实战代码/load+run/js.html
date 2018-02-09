@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="a.js" defer></script>
+    <script src="b.js" defer></script>
+    <script src="c.js" defer></script>
+    <script src="e.js" defer></script>
+  </head>
+  <body>
+    <div id="content">hello ~~~</div>
+    <div id="content2">world ~~~</div>
+    <script>
+      function loadScript(url) {
+        var ele = document.createElement('script')
+        ele.type = 'text/javascript'
+        ele.src = url
+        ele.defer = true
+        document.body.appendChild(ele)
+      }
+      loadScript('d.js')
+      </script>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div><div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+
+    <div class='heello ~~'></div><div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div><div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+
+
+    <div class='heello ~~'></div>
+
+    <div class='heello ~~'></div>
+    <div class='heello ~~'></div>
+  </body>  
+</html>
