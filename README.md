@@ -51,6 +51,7 @@
 **懒加载：** 适用图片很多、页面很长；并发加载资源过多阻塞js加载；图片进入可视区域之后请求图片资源;监听onscrrol  
 **预加载：** 静态资源在使用之前的提前请求；从缓存加载；页面展示的依赖关系维护(src加载，xml请求-跨域)  
 
+
 # 第6章-重绘与回流 
 **回流：** 当 render tree中的一部分或全部因为元素的规模尺寸、布局、隐藏等改变而需要重新构建；当页面布局和几何属性改变时 
 **影响回流的css属性**  
@@ -61,16 +62,35 @@
 **影响重绘的css元素**  
 - color border-style background outline box-shadow  
 **将dom变成独立的图层**  
-- 3D或透视，perspective transform
-- 使用加速视频解码的video节点
-- 拥有3D（webGL）上下文或者加速的2D上下文的canvas节点
-- falsh
-- 对自己的opacity做css动画，或者动画webkit变化
-- 拥有加速css过滤器的元素
-- 元素有一个包含复合层的后代节点
-- z-index较低，并且包含一二复合层的兄弟元素
+- 3D或透视，perspective transform  
+- 使用加速视频解码的video节点  
+- 拥有3D（webGL）上下文或者加速的2D上下文的canvas节点  
+- falsh  
+- 对自己的opacity做css动画，或者动画webkit变化  
+- 拥有加速css过滤器的元素  
+- 元素有一个包含复合层的后代节点  
+- z-index较低，并且包含一二复合层的兄弟元素 
+**实战优化点** 
+- 用translate替代top  
+- 用opacity替代visibility  
+- 不要一条一条的修改dom的样式，预先定义好class，然后膝盖dom的className  
+- 把dom离线后修改，比如：先把dom给display:none(又一次reflow),然后修改100次，然后再显示出来  
+- 不要把dom结点的属性值放在一个循环里当成循环里面的变量  
+- 不要使用table布局，可能很小的一个小改动会造成整个table的重新布局  
+- 动画实现的速度选择  
+- 对于动画新建图层  
+- 启用GPU硬件加速  
 
 
+# 第7章-浏览器存储   
+**回流：** 当 render tree中的一部分或全部因为元素的规模尺寸、布局、隐藏等改变而需要重新构建；当页面布局和几何属性改变时 
+- Cookie，维持客户端状态,由服务端http response header 的 set-cookie生成，客户端保存;JS document.cookie设置(客户端数据存储)；4KB;过期时间expire;HTTPonly（是否允许js读写）;cookie存储路径(path)  
+- LocalStorage，用于浏览器存储；5M左右；仅在客户端使用；接口封装较好；浏览器本地缓存方案  
+- SessionStorage，会话级别浏览器存储；5M左右；仅在客户端使用；接口封装较好；用于表单信息的维护   
+- IndexedDB,客户端存储大量结构化数据；为应用创建离线版本  
 
 
-
+* 静态资源cdn跟域名分开，防止携带cookie浪费流量  
+**service workers产生的意义**  
+- 使用拦截和处理网络请求的能力，实现一个离线应用  
+- 使用service worker在后台运行同事能和页面通信的能力，实现大规模后台数据的处理  

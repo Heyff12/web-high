@@ -1,0 +1,24 @@
+{
+  "name": "web-high",
+  "version": "1.0.0",
+  "description": "- 网络   - 构建   - 浏览器渲染 - 服务端",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Heyff12/web-high.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Heyff12/web-high/issues"
+  },
+  "homepage": "https://github.com/Heyff12/web-high#readme",
+  "devDependencies": {
+    "koa": "^2.5.0",
+    "koa-static": "^4.0.2"
+  }
+}

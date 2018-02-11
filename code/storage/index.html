@@ -1,0 +1,104 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="name"></div>
+    <div id="gender"></div>
+    <script>
+        function openDB(name, callback) {
+            // 建立打开indexdb indexedDB.open
+            var request = window.indexedDB.open(name)
+            request.onerror = function(e) {
+                console.log('open indexdb error')
+            }
+            request.onsuccess = function(e) {
+                    myDB.db = e.target.result
+                    callback && callback()
+                },
+
+                // from no database to first version, first version to second version ... 
+                request.onupgradeneeded = function() {
+                    var store = request.result.createObjectStore('books', {
+                        keyPath: 'isbn'
+                    })
+
+                    var titleIndex = store.createIndex('by_title', 'title', {
+                        unique: true
+                    })
+
+                    var authorIndex = store.createIndex('by_author', 'author')
+
+                    store.put({
+                        title: 'Quarry Memories',
+                        author: 'Fred',
+                        isbn: 123456
+                    })
+
+                    store.put({
+                        title: 'Water Buffaloes',
+                        author: 'Fred',
+                        isbn: 234567
+                    })
+
+                    store.put({
+                        title: 'Bedrock Nights',
+                        author: 'Barney',
+                        isbn: 345678
+                    })
+                }
+        }
+        var myDB = {
+            name: 'testDB',
+            version: '1',
+            db: null
+        }
+
+        function addData(db) {
+            // object store
+            var transaction = db.transaction('books', 'readwrite')
+            var store = transaction.objectStore('books')
+                // 获取当前indexdb中的数据
+                // var request = store.get(234567)
+                // request.onsuccess = function (e) {
+                //   console.log(e.target.result)
+                // }
+
+            // 添加信息到indexdb中
+            // store.add({
+            //   title: 'Flowers',
+            //   author: 'Quan',
+            //   isbn: 222
+            // })
+
+            // store.delete(222)
+
+            store.get(222).onsuccess = function(e) {
+                books = e.target.result
+                console.log(books)
+                books.author = 'James'
+                var request = store.put(books)
+                request.onsuccess = function(e) {
+                    console.log('update success')
+                }
+            }
+        }
+
+        openDB(myDB.name, function() {
+            // 删除indexdb
+            // myDB.db.close()
+            // window.indexedDB.deleteDatabase(myDB.db)
+
+            // 往indexdb中添加数据
+        })
+
+        // objectStore 不同于数据库的表
+
+        setTimeout(function() {
+            addData(myDB.db)
+        }, 2000)
+    </script>
+</body>
+
+</html>
