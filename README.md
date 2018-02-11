@@ -48,8 +48,27 @@
 
 
 # 第5章-懒加载和预加载 
-**懒加载：** 适用图片很多、页面很长；并发加载资源过多阻塞js加载；图片进入可视区域之后请求图片资源  
-**预加载：** 静态资源在使用之前的提前请求；从缓存加载；页面展示的依赖关系维护  
+**懒加载：** 适用图片很多、页面很长；并发加载资源过多阻塞js加载；图片进入可视区域之后请求图片资源;监听onscrrol  
+**预加载：** 静态资源在使用之前的提前请求；从缓存加载；页面展示的依赖关系维护(src加载，xml请求-跨域)  
+
+# 第6章-重绘与回流 
+**回流：** 当 render tree中的一部分或全部因为元素的规模尺寸、布局、隐藏等改变而需要重新构建；当页面布局和几何属性改变时 
+**影响回流的css属性**  
+- 盒子模型相关属性，width padding border
+- 定位属性及浮动,top position clear float
+- 改变节点内部文字结构,font-weight text-align overflow   
+**重绘：** 当 render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观、风格，而不会影响布局，比如background-color 
+**影响重绘的css元素**  
+- color border-style background outline box-shadow  
+**将dom变成独立的图层**  
+- 3D或透视，perspective transform
+- 使用加速视频解码的video节点
+- 拥有3D（webGL）上下文或者加速的2D上下文的canvas节点
+- falsh
+- 对自己的opacity做css动画，或者动画webkit变化
+- 拥有加速css过滤器的元素
+- 元素有一个包含复合层的后代节点
+- z-index较低，并且包含一二复合层的兄弟元素
 
 
 
