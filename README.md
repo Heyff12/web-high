@@ -94,3 +94,26 @@
 **service workers产生的意义**  
 - 使用拦截和处理网络请求的能力，实现一个离线应用  
 - 使用service worker在后台运行同事能和页面通信的能力，实现大规模后台数据的处理  
+
+
+# 第8章-缓存   
+**Cache-Control：**  
+- max-age:缓存的时间，该时间之内不再发出请求（200 from memory cache);优先级高于expires(过期时间)、last-modified  
+- s-maxage:(304),针对public（CDN）的缓存有效;优先级高于max-age  
+- no-cache:搭配max-age=0;发请求到服务端去询问浏览器是否过期；  
+- no-store:不使用缓存  
+- expires: 缓存过期时间，是服务端的具体的时间点；告诉浏览器在过期时间前可以直接从浏览器缓存读取数据，无需再次请求  
+- last-modified: response header (最后修改时间)
+- if-modified-since: request header（客户端知道的最后修改的时间），需要配合cache-contorl使用，优先级低于max-age  
+- Etag:response header(文件内容hash值)，优先级高于last-modified
+- if-None-Match:request header,需要配合cache-contorl使用
+**分级缓存策略：**  
+- 200(from cache):由expires/cache-contorl控制，后者优先级高；只要没有失效，浏览器就只访问自己的缓存
+- 304:由last-modified/etag控制，当上一层时间点失效或者用户点击refresh,F5时，浏览器会发送请求给服务器，如果服务端没有变化，则返回304给浏览器 
+- 200:当浏览器本地没有缓存或者上一层失效，或者用户点击了ctr+f5时，浏览器直接去服务器下载最新数据
+
+
+# 第9章-服务端性能优化 
+- 构建层模板编译：vue2.0拆分 runtime template编译 
+- 数据无关的页面prerender的方式(营销活动，公司介绍--内容不变)
+- 服务端渲染：服务端拿数据
