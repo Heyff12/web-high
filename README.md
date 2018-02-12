@@ -36,15 +36,15 @@
 **HTML渲染过程的特性：** 顺序执行，并发加载；是否阻塞；依赖关系；引入方式 
 * **顺序执行，并发加载：** head(css) body(div script) 
 * **是否阻塞：** 
-- css阻塞，css通过link放在head阻塞页面的渲染（防止闪动）；css阻塞内部js的执行（js可能会改变dom），css不阻塞外部脚本的执行  
-- js阻塞，直接引入的js阻塞页面的渲染（放在body后面）；js不阻塞资源的加载；js顺序执行，阻塞后续js逻辑的执行  
+- css阻塞，css通过link放在head阻塞页面的渲染（防止dom加载完成后-出现样式闪动）；css阻塞内部js的执行（js可能会改变dom），css不阻塞外部脚本的并发加载  
+- js阻塞，直接引入的js阻塞页面的渲染（js没有加载完，页面没有dom内容），不阻塞加载（放在body后面）；js不阻塞资源的加载；js顺序执行，阻塞后续js逻辑的执行  
 * **依赖关系：** 页面渲染依赖css的加载；js的执行顺序有依赖关系；js逻辑dom节点有依赖关系；
 * js引入的方式  
 - 直接引入
-- defer，不阻塞html的渲染，dom构建完成执行，顺序执行（等同直接引入）
-- async，不阻塞html的渲染，不遵循依赖关系，服务端返回就立马执行
+- defer，不阻塞html的渲染；dom树构建完成执行；顺序执行（等同直接引入）
+- async，不阻塞html的渲染；不按照加载的先后顺序执行，不遵循依赖关系，服务端返回就立马执行
 - 异步动态引入js
-* **引入方式：** css样式表置顶；用link代替import（在css中通过import不会触发浏览并发机制，在body最后执行，可以在css内部使用）；js脚本置底；合理使用js的异步加载能力
+* **引入方式：** css样式表置顶；用link代替import（以前--在css中通过import不会触发浏览并发机制，在body最后执行，可以在css内部使用；@import/link内部通过@import引入的css不能并发加载 ）；js脚本置底；合理使用js的异步加载能力（dom加载完成后，用defer）
 
 
 # 第5章-懒加载和预加载 
@@ -73,7 +73,7 @@
 **实战优化点** 
 - 用translate替代top  
 - 用opacity替代visibility  
-- 不要一条一条的修改dom的样式，预先定义好class，然后膝盖dom的className  
+- 不要一条一条的修改dom的样式，预先定义好class，然后修改dom的className  
 - 把dom离线后修改，比如：先把dom给display:none(又一次reflow),然后修改100次，然后再显示出来  
 - 不要把dom结点的属性值放在一个循环里当成循环里面的变量  
 - 不要使用table布局，可能很小的一个小改动会造成整个table的重新布局  

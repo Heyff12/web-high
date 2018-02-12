@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box {
+            position: relative;
+            will-change: transform;
+            width: 50px;
+            height: 50px;
+            background: purple;
+            opacity: 1;
+            /* transform: translateY(0); */
+            display: none;
+        }
+        
+        #box.action {
+            width: 200px;
+            height: 300px;
+            left: 300px;
+            top: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script>
+        setTimeout(function() {
+            // console.log(document.getElementById('box').style.top);
+            // document.getElementById('box').style.transform = 'translateY(100px)';
+            // document.getElementById('box').style.visibility = 'hidden';
+            document.getElementById('box').style.opacity = '0';
+            document.getElementById('box').style.width = '200px';
+            document.getElementById('box').style.height = '300px';
+            document.getElementById('box').style.left = '300px';
+            document.getElementById('box').style.top = '200px';
+            document.getElementById('box').style.opacity = '1';
+            document.getElementById('box').display = 'block';
+            // document.getElementById('box').className = 'action';
+        }, 2000);
+    </script>
+
+</body>
+
+</html>
