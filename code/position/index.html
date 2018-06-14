@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Position</title>
+    <style>
+        .bank{
+            height: 50px;
+        }
+        .bank1{
+            background: red;
+            width: 200px;
+            position:static;
+        }
+        .bank2{
+            background: orange;
+            width: 300px;
+            position: relative;
+        }
+        .bank3{
+            background: yellowgreen;
+            width: 400px;
+            position:absolute;
+            left: 0;
+            top:100px;
+        }
+        .bank4{
+            background: green;
+        }
+        .bank5{
+            background: skyblue;
+            position:fixed;
+            top:155px;
+        }
+        .span{
+            color: white;
+        }
+        .span1{
+            position: static;
+        }
+        .span2{
+            position: relative;
+            left: 20px;
+        }
+
+        .bankF{
+            width: 50px;
+            height: 50px;
+        }
+        .bank6{
+            background: blue;
+            float: left;
+        }
+        .bank7{
+            background: purple;
+            /* float: left; */
+        }
+        .bank8{
+            background: palevioletred;
+            /* float: left; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bank bank1"> <span class="span span1">span1--static</span>        bank1--static</div>
+    <div class="bank bank2"> <span class="span span2">span2--relative;left: 20px;</span>        bank2--relative</div>
+    <div class="bank bank3"> <span class="span span3">span3</span>        bank3--absolute;left: 0;top:100px;</div>
+    <div class="bank bank4"> <span class="span span4">span4</span>        bank4</div>
+    <div class="bank bank5"> <span class="span span5">span5</span>        bank5--fixed;top:155px;</div>
+
+    <div style="margin-top:70px"></div>    
+    <div class="bankF bank6">bank6</div>
+    <div class="bankF bank7">bank7</div>
+    <div class="bankF bank8">bank8</div>
+
+
+
+    <div>
+        4ome text
+        4p>Some more text.</p>
+    </div>
+
+</body>
+
+</html>

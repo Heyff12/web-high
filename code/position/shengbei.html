@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圣杯布局</title>
+    <style>
+        /* 以下为简码，仅保留关键部分 */
+
+        header,
+        footer {
+            height: 50px;
+            background: pink;
+        }
+
+        .wrapper {
+            padding: 0 100px 0 100px;
+            overflow: hidden;
+        }
+
+        .col {
+            position: relative;
+            float: left;
+        }
+
+        .main {
+            /* position: relative;
+            float: left; */
+            width: 100%;
+            height: 200px;
+            background: yellowgreen;
+        }
+
+        .left {
+            /* position: relative;
+            float: left; */
+            width: 100px;
+            height: 200px;
+            margin-left: -100%;
+            left: -100px;
+            background: purple;
+        }
+
+        .right {
+            /* position: relative;
+            float: left; */
+            width: 100px;
+            height: 200px;
+            margin-left: -100px;
+            right: -100px;
+            background: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <header>header</header>
+    <section class="wrapper">
+        <section class="col main">main</section>
+        <aside class="col left">left</aside>
+        <aside class="col right">right</aside>
+    </section>
+    <footer>footer</footer>
+
+    <pre>
+        使用了 relative 相对定位、float（需要请浮动，此处使用 overflow:hidden; 方法）和 负值 margin ，
+        将 left 和 right 部分「安装」到 wrapper 的两侧，顾名「圣杯」。
+    </pre>
+
+
+    <pre>
+        如果将浏览器无线变窄，「圣杯」将会「破碎」掉。如图，当 main 部分的宽小于 left 部分时就会发生布局混乱。
+    </pre>
+
+</body>
+
+</html>

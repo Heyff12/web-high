@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双飞翼布局</title>
+    <style>
+        /* 以下为简码，仅保留关键部分 */
+
+        header,
+        footer {
+            height: 50px;
+            background: pink;
+        }
+
+        .wrapper {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .main {
+            width: 100%;
+            background: yellowgreen;
+        }
+
+        .main-wrap {
+            margin: 0 100px 0 100px;
+            height: 200px;
+            background: red;
+        }
+
+        .left {
+            width: 100px;
+            height: 200px;
+            margin-left: -100%;
+            background: purple;
+        }
+
+        .right {
+            width: 100px;
+            height: 200px;
+            margin-left: -100px;
+            background: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+    <header>header</header>
+    <section class="wrapper">
+        <section class="col main">
+            <section class="main-wrap">main</section>
+        </section>
+        <aside class="col left">left</aside>
+        <aside class="col right">right</aside>
+    </section>
+    <footer>footer</footer>
+
+    <pre>
+            同样使用了 float 和 负值 margin,不同的是，并没有使用 relative 相对定位 而是增加了 dom 结构，
+            增加了一个层级。确实解决了圣杯布局的缺陷。
+    </pre>
+
+
+</body>
+
+</html>

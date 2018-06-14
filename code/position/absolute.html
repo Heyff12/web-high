@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Absolute两列布局</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content {
+            width: auto;
+            max-width: 1200px;
+            padding-left: 200px;
+            box-sizing: border-box;
+            margin: 0 auto;
+            background: #f3f3f3;
+            position: relative;
+        }
+
+        .left {
+            width: 190px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: orangered;
+            height: 100%;
+            min-height: 300px;
+            overflow-y: auto;
+        }
+
+        .main {
+            width: 100%;
+            background: green;
+        }
+
+        .abs {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .detail {
+            width: 100%;
+            min-height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="main">
+            main
+            <section class="detail">content</section>
+        </div>
+        <div class="left">
+            <ul>
+                <li>11111111111</li>
+                <li>22222222222</li>
+                <li>33333333333</li>
+                <li>11111111111</li>
+                <li>22222222222</li>
+            </ul>
+            <ul class="abs">
+                <li>底部固定文字列表</li>
+                <li>dddddd--1111</li>
+                <li>dddddd--2222</li>
+                <li>dddddd--3333</li>
+                <li>dddddd--4444</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
