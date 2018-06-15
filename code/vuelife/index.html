@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue生命周期</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>绑定数据-事件</h2>
+        <p>{{ message }}</p>
+        <input v-model="message">
+        <br/>
+        <button v-on:click="reverseMessage">逆转消息</button>
+        <br/>
+        <button v-on:click="destroyMessage">message=null</button>
+        <br/>
+        <h2>绑定title</h2>
+        <span v-bind:title="message1">
+            鼠标悬停几秒钟查看此处动态绑定的提示信息！
+        </span>
+        <br/>
+        <h2>列表循环</h2>
+        <ol>
+            <li v-for="todo in todos">
+                {{ todo.text }}
+            </li>
+        </ol>
+        <h2>组件</h2>
+        <ol>
+            <!--
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
+      我们也需要为每个组件提供一个“key”，稍后再
+      作详细解释。
+    -->
+            <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id">
+            </todo-item>
+        </ol>
+    </div>
+    <script>
+        // 定义名为 todo-item 的新组件
+        Vue.component('todo-item', {
+            props: ['todo'],
+            template: '<li>{{ todo.text }}</li>'
+        })
+        new Vue({
+            el: '#app',
+            // component:['todo-item'],
+            data: {
+                message: 'Hello Vue.js!',
+                message1: '页面加载于 ' + new Date().toLocaleString(),
+                todos: [{
+                        text: '学习 JavaScript'
+                    },
+                    {
+                        text: '学习 Vue'
+                    },
+                    {
+                        text: '整个牛项目'
+                    }
+                ],
+                groceryList: [{
+                        id: 0,
+                        text: '蔬菜'
+                    },
+                    {
+                        id: 1,
+                        text: '奶酪'
+                    },
+                    {
+                        id: 2,
+                        text: '随便其它什么人吃的东西'
+                    }
+                ]
+            },
+            beforeCreate: function () {
+                console.log('beforeCreate');
+                console.log('message is: ' + this.message);
+                console.log('reverseMessage is: ' + this.reverseMessage);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            //created 钩子可以用来在一个实例被创建之后执行代码
+            created: function () {
+                console.log('created');
+                // `this` 指向 vm 实例
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            beforeMount: function () {
+                console.log('beforeMount');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            mounted: function () {
+                console.log('mounted');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            beforeUpdate: function () {
+                console.log('beforeUpdate');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            updated: function () {
+                console.log('updated');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+                console.log('this is: ');
+                console.log(this);
+                console.log(this.$el);
+            },
+            beforeDestroy: function () {
+                console.log('beforeDestroy');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+            },
+            destroyed: function () {
+                console.log('destroyed');
+                console.log('message is: ' + this.message);
+                console.log('vue is: ' + Vue);
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                },
+                destroyMessage(){
+                    this.message = null;
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
