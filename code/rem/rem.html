@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rem与em</title>
+    <style>
+        /* html {
+            font-size: 16px;
+            padding: 2rem;
+        } */
+
+        .rem16 {
+            font-size: 16px;
+            padding: 1rem;
+        }
+
+        .rem160 {
+            font-size: 160px;
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        .em16 {
+            font-size: 16px;
+            padding: 1em;
+        }
+
+        .em160 {
+            font-size: 160px;
+            padding: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="rem16">font-size:16px;padding:1rem; ----16px</p>
+    <p class="rem160">font-size:160px;padding:1rem; ----16px</p>
+    <p class="em16">font-size:16px;padding:1em; ----16px</p>
+    <p class="em160">font-size:160px;padding:1em; ----160px</p>
+
+    <pre>           
+        rem 单位翻译为像素值是由 html 元素的字体大小决定的。 此字体大小会被浏览器中字体大小的设置影响，除非显式重写一个具体单位。
+        em 单位转为像素值，取决于他们使用的字体大小。 此字体大小受从父元素继承过来的字体大小，除非显式重写与一个具体单位。
+    </pre>
+    <script>
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 6.4 + 'px';
+    </script>
+
+</body>
+
+</html>
