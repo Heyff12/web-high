@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>script 正常引入</title>
+    <script src="head1.js"></script>
+</head>
+
+<body>
+    <div id="one">
+        1.js 只能获取 第一个div，后面两个div获取不到
+    </div>
+    <script src="1.js"></script>
+    <div id="two">
+        2.js 只能获取 第一/二个div，后面1个div获取不到
+    </div>
+    <script src="2.js"></script>
+    <div id="three">
+        3.js 只能获取 3个div
+    </div>
+    <script src="3.js"></script>
+    <h3>
+        js会阻塞dom的渲染——解析过程中，浏览器发现script元素，就暂停解析，把网页渲染的控制权转交给 JavaScript 引擎。
+    </h3>
+    <ul>
+        <li>DOMContentLoaded事件在load之前执行</li>
+        <li>DOMContentLoaded/load在所有dom渲染、js加载之后执行</li>
+        <li>DOMContentLoaded/load不等待js异步事件的执行</li>
+        <li>DOMContentLoaded/load等待js同步事件的执行（如果同步事件占用的事件较长，则该js之后的js的加载执行都会延后，比如sleepFor循环）</li>
+        <li>js按照顺序加载执行</li>
+        <li>var定义的变量，在声明变量之前执行调用该变量的该函数，该变量值为undefined</li>
+        <li>let/const定义的变量，在声明变量之前执行调用该变量的该函数，报错</li>
+    </ul>
+
+    <script>
+        var timeStart = new Date().getTime()
+        console.log('=======timeStart============', timeStart)
+        window.addEventListener('load', () => {
+            console.log('========================================页面加载完成=======load==========================================================================================================')
+            var four = document.getElementById('four')
+            console.log(four)
+            console.log(first)
+            console.log(fouth)
+            var timeEnd = new Date().getTime()
+            console.log('=======timeEnd============', timeEnd)
+            var loadingTime = timeEnd - timeStart
+            console.log('-------loadingTime--',loadingTime)
+        })
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('========================================页面加载完成=====DOMContentLoaded================================================================================================')
+            var four = document.getElementById('four')
+            console.log(four)
+            console.log(first)
+            console.log(fouth)
+        })
+    </script>
+    <script>
+        console.log('=================首页=======================DOMContentLoaded--------load=======之后==========================================================================================')
+    </script>
+    <div id="four">
+        位于load事件之后的dom；load、DOMContentLoaded在该dom渲染完成后才会执行
+    </div>
+    <script src="4.js"></script>
+</body>
+
+</html>

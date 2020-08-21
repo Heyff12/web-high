@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>script defer</title>
+    <script src="head1.js" defer></script>
+</head>
+
+<body>
+    <div id="one">
+        1.js 只能获取 第一个div，后面两个div获取不到
+    </div>
+    <script src="1.js" defer></script>
+    <div id="two">
+        2.js 只能获取 第一/二个div，后面1个div获取不到
+    </div>
+    <script src="2.js" defer></script>
+    <div id="three">
+        3.js 只能获取 3个div
+    </div>
+    <script src="3.js" defer></script>
+    <h3>
+        有defer的script,会在渲染dom的时候同时下载
+    </h3>
+    <ul>
+        <li>没有defer的script会有限加载并执行</li>
+        <li>js按照顺序加载执行</li>
+        <li>js的下载不会阻塞dom渲染</li>
+        <li>defer的script加载并执行完之后触发DOMContentLoaded/load</li>
+        <li>
+            对于内置而不是加载外部脚本的script标签，以及动态生成的script标签，defer属性不起作用。另外，使用defer加载的外部脚本不应该使用document.write方法。
+        </li>
+    </ul>
+
+    <h5>
+        浏览器开始解析 HTML 网页。<br/>
+        解析过程中，发现带有defer属性的script元素。<br/>
+        浏览器继续往下解析 HTML 网页，同时并行下载script元素加载的外部脚本。<br/>
+        浏览器完成解析 HTML 网页，此时再回过头执行已经下载完成的脚本。<br/>
+    </h5>
+
+    <script>
+        var timeStart = new Date().getTime()
+        console.log('=======timeStart============', timeStart)
+        window.addEventListener('load', () => {
+            console.log('========================================页面加载完成=======load==========================================================================================================')
+            var four = document.getElementById('four')
+            console.log(four)
+            console.log(first)
+            console.log(fouth)
+            var timeEnd = new Date().getTime()
+            console.log('=======timeEnd============', timeEnd)
+            var loadingTime = timeEnd - timeStart
+            console.log('-------loadingTime--',loadingTime)
+        })
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('========================================页面加载完成=====DOMContentLoaded================================================================================================')
+            var four = document.getElementById('four')
+            console.log(four)
+            console.log(first)
+            console.log(fouth)
+        })
+    </script>
+    <script defer> 
+        console.log('=================首页=======================DOMContentLoaded--------load=======之后============defer不起作用==============================================================================')
+    </script>
+    <div id="four">
+        位于load事件之后的dom；load、DOMContentLoaded在该dom渲染完成后才会执行
+    </div>
+    <script src="4.js"></script>
+</body>
+
+</html>
