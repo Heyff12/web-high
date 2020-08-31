@@ -33,6 +33,48 @@
         <li>var定义的变量，在声明变量之前执行调用该变量的该函数，该变量值为undefined</li>
         <li>let/const定义的变量，在声明变量之前执行调用该变量的该函数，报错</li>
     </ul>
+    <h3>DOMContentLoaded/load的区别</h3>
+    <ul>
+        <li>
+            The load event is fired when the whole page has loaded, including all dependent resources such as stylesheets and images. 
+            This is in contrast to DOMContentLoaded, which is fired as soon as the page DOM has been loaded, without waiting for resources to finish loading.
+        </li>
+        <li>
+            在文档装载完成后会触发  load 事件。此时，在文档中的所有对象都在DOM中，所有图片，脚本，链接以及子框都完成了装载。 
+        </li>
+        <li>
+            The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
+        </li>
+        <li>
+            同时也会有 Gecko-指定 DOM事件，如 DOMContentLoaded 和 DOMFrameContentLoaded (它们可以使用 EventTarget.addEventListener() 来处理 ) ， 
+            这些事件在页面DOM构建起来后就会触发，而不会等到其他的资源都装载完成。 
+        </li>
+    </ul>
+    <h3>dom文件加载的步骤为：</h3>
+    <ul>
+        1,解析HTML结构。<br/>
+        2,DOM树构建完成。//DOMContentLoaded<br/>
+        3,加载外部脚本和样式表文件。<br/>
+        4,解析并执行脚本代码。<br/>
+        5,加载图片等外部文件。<br/>
+        6,页面加载完毕。//load
+    </ul>
+    <h3>重流和重绘</h3>
+    <ul>
+        <li>
+            作为开发者，应该尽量设法降低重绘的次数和成本。比如，尽量不要变动高层的 DOM 元素，而以底层 DOM 元素的变动代替；再比如，重绘table布局和flex布局，开销都会比较大。
+        </li>
+        <li>
+            读取 DOM 或者写入 DOM，尽量写在一起，不要混杂。不要读取一个 DOM 节点，然后立刻写入，接着再读取一个 DOM 节点。
+        </li>
+        <li>缓存 DOM 信息。</li>
+        <li>不要一项一项地改变样式，而是使用 CSS class 一次性改变样式。</li>
+        <li>使用documentFragment操作 DOM</li>
+        <li>动画使用absolute定位或fixed定位，这样可以减少对其他元素的影响。</li>
+        <li>只在必要时才显示隐藏元素。</li>
+        <li>使用window.requestAnimationFrame()，因为它可以把代码推迟到下一次重流时执行，而不是立即要求页面重流。</li>
+        <li>使用虚拟DOM（virtual DOM）库。</li>
+    </ul>
 
     <script>
         var timeStart = new Date().getTime()
@@ -54,7 +96,21 @@
             console.log(four)
             console.log(first)
             console.log(fouth)
+            var timeEnd = new Date().getTime()
+            console.log('=======timeEnd============', timeEnd)
+            var loadingTime = timeEnd - timeStart
+            console.log('-------loadingTime--',loadingTime)
         })
+        document.addEventListener('readystatechange', event => {
+            if (event.target.readyState === 'interactive') {
+                console.info('--readystatechange--------------------------interactive---------------------------------------------------------')
+            } else if (event.target.readyState === 'complete') {
+                console.info('--readystatechange--------------------------complete---------------------------------------------------------')
+            } else if (event.target.readyState === 'loading'){
+                console.info('--readystatechange--------------------------loading---------------------------------------------------------')
+
+            }
+        });
     </script>
     <script>
         console.log('=================首页=======================DOMContentLoaded--------load=======之后==========================================================================================')

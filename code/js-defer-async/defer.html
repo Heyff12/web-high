@@ -25,7 +25,7 @@
         有defer的script,会在渲染dom的时候同时下载
     </h3>
     <ul>
-        <li>没有defer的script会有限加载并执行</li>
+        <li>没有defer的script会优先加载并执行</li>
         <li>js按照顺序加载执行</li>
         <li>js的下载不会阻塞dom渲染</li>
         <li>defer的script加载并执行完之后触发DOMContentLoaded/load</li>
@@ -61,6 +61,10 @@
             console.log(four)
             console.log(first)
             console.log(fouth)
+            var timeEnd = new Date().getTime()
+            console.log('=======timeEnd============', timeEnd)
+            var loadingTime = timeEnd - timeStart
+            console.log('-------loadingTime--',loadingTime)
         })
     </script>
     <script defer> 
