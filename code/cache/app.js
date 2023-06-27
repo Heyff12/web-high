@@ -1,4 +1,4 @@
-var PORT = 8000
+var PORT = 8900
 var http = require('http')
 var url = require('url')
 var fs = require('fs')
@@ -8,6 +8,8 @@ var config = require('./config')
 
 var server = http.createServer(function (request, response) {
   var pathname = url.parse(request.url).pathname
+  // response.write(pathname)
+  // response.end()
   var realPath = 'assets' + pathname
   var ext = path.extname(realPath)
   ext = ext ? ext.slice(1) : 'unknown'
@@ -21,7 +23,9 @@ var server = http.createServer(function (request, response) {
   }
 
   fs.stat(realPath, function (err, stat) {
-    var lastModified = stat.mtime.toUTCString()
+    console.log('----realPath--------stat------------------')
+    console.log(realPath, stat)
+    var lastModified = stat?.mtime?.toUTCString() || new Date()
     response.setHeader('Last-Modified', lastModified)
     if (request.headers['if-modified-since'] && lastModified == request.headers['if-modified-since']) {
       response.writeHead(304, 'Not Modified')

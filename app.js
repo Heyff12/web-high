@@ -13,5 +13,6 @@ app.use(main);
 //     ctx.body = 'Hello World';
 // });
 
-app.listen(2000, '192.168.0.156');
-console.log('running 192.168.0.156:2000')
+// app.listen(2000, '192.168.0.156');
+app.listen(2000, '10.206.21.14');
+console.log('running 10.206.21.14:2000')
